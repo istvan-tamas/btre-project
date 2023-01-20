@@ -29,6 +29,12 @@ def listing(request, listing_id):
 def search(request):
     queryset_list = Listing.objects.order_by('-list_date')
 
+    if 'keywords' in request.GET:
+        keywords = request.GET["keywords"]
+
+        if keywords:
+            query_list = queryset_list.filter(description__icontains=keywords)
+
 
     context = {
         'state_choices': state_choices,
