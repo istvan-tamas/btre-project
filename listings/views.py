@@ -33,7 +33,7 @@ def search(request):
         keywords = request.GET["keywords"]
 
         if keywords:
-            query_list = queryset_list.filter(description__icontains=keywords)
+            query_list = queryset_list.filter(desctiption__icontains=keywords)
 
     if 'city' in request.GET:
         city = request.GET["city"]
@@ -63,6 +63,7 @@ def search(request):
         'state_choices': state_choices,
         'bedroom_choices': bedroom_choices,
         'price_choices': price_choices,
-        'listings': queryset_list
+        'listings': queryset_list,
+        'values': request.GET
     }
     return render(request, 'listings/search.html',context)
